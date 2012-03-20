@@ -1,0 +1,5 @@
+The point of this one is that it makes your effective userid into that of the user who owns the file corresponding to the next level.
+
+When we finally get all the useraccounts set up, the thing we'll need to do is change to be the user corresponding to the next level, then chmod ug+s executable-name.  We'll also need to chown the password.txt file to belong to the next level.
+
+The solution:  change the PATH so that "date" redirects to the player's executable (conveniently, the player's executable is 'cat password.txt' or something).
