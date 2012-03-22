@@ -1,0 +1,3 @@
+This is going on a machine that authenticates continously over the network.  It connects to another machine (which will be running server.py) on a port (9125), authenticates, then gets given a password encrypted with a session key.  THIS DEPENDS ON PYTHON AND ON TWISTED.
+
+Solution:  lots of solutions.
