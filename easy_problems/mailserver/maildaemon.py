@@ -5,16 +5,21 @@ import smtplib
 import socket
 import asyncore
 import platform
-mydomain = platform.node() or 'localhost'
-acceptedaddr="foobar@%s" % mydomain
+mydomain = 'ec2-107-20-71-239.compute-1.amazonaws.com'
+acceptedaddr="level03@%s" % mydomain
 sentto="password-recovery@%s" % mydomain
-passwd="baz"
+passwd="M6DH3&MA9.#wUcuioiLT"
 mailserver = 'smtp.case.edu'
+
+authorized_ips = ('10.196.81.248',)
 class MySMTP(smtpd.SMTPServer) :
 	def __init__(self, localaddr, remoteaddr) :
 		smtpd.SMTPServer.__init__(self,localaddr, remoteaddr)
 
 	def process_message(self,peer, mailfrom, rcpttos, data) :
+		if peer not in authorized_ips :
+			print peer + " is not authorized"
+			return
 		if sentto in rcpttos :
 			#it was sent to the right address
 			send_password(mailfrom, data) 
