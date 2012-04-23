@@ -48,14 +48,14 @@ def send_password(mailfrom, data) :
 	i = 3
 	while i :
 		try :
-			foo = conn.sendmail(sentto, to, data)
+			foo = conn.sendmail('password-recovery@case.edu', to, data)
 			break;
-		except smtplib.SMTPRecipientsRefused as e:
+		except (smtplib.SMTPRecipientsRefused, smtplib.SMTPSendersRefused) as e:
 			print 'error connecting. retrying'
 			i-=1
 	print foo
 	conn.quit()
 
-x = MySMTP(("localhost",25),None)
+x = MySMTP(("129.22.21.164",8020),None)
 
 asyncore.loop()
