@@ -7,7 +7,7 @@ def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, port))
     while (True):
-        s.send('somethinggoeshere')
+        s.send('password')
         data = s.recv(1024)
         print 'Received', repr(data)
 
@@ -19,11 +19,13 @@ if __name__ == '__main__':
     if argc == 1:
         print_usage()
         quit()
-    elif argc >= 2:
+    elif argc == 2:
         host = sys.argv[1]
         port = 9125 
-    elif argc >= 3:
+    elif argc == 3:
         host = sys.argv[1]
         port = sys.argv[2]
+    else
+        print('Invalid usage')
     main()
     s.close()
