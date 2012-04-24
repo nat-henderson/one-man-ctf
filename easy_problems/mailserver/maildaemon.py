@@ -17,8 +17,8 @@ class MySMTP(smtpd.SMTPServer) :
 		smtpd.SMTPServer.__init__(self,localaddr, remoteaddr)
 
 	def process_message(self,peer, mailfrom, rcpttos, data) :
-		if peer not in authorized_ips :
-			print peer + " is not authorized"
+		if peer[0] not in authorized_ips :
+			print peer[0] + " is not authorized"
 			return
 		if sentto in rcpttos :
 			#it was sent to the right address
@@ -55,7 +55,7 @@ def send_password(mailfrom, data) :
 		try :
 			foo = conn.sendmail('password-recovery@case.edu', to, data)
 			break;
-		except (smtplib.SMTPRecipientsRefused, smtplib.SMTPSendersRefused) as e:
+		except (smtplib.SMTPRecipientsRefused) as e:
 			print 'error connecting. retrying'
 			i-=1
 	print foo
