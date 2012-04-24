@@ -5,20 +5,20 @@ import smtplib
 import socket
 import asyncore
 import platform
-mydomain = 'ec2-107-20-71-239.compute-1.amazonaws.com'
-acceptedaddr="level03@%s" % mydomain
+mydomain = 'ec2-23-21-17-52.compute-1.amazonaws.com'
+acceptedaddr="level04@%s" % mydomain
 sentto="password-recovery@%s" % mydomain
-passwd="M6DH3&MA9.#wUcuioiLT"
+passwd="Uk#HKJ3%eEn#sib4s9Pz"
 mailserver = 'smtp.case.edu'
 
-authorized_ips = ('10.196.81.248',)
+authorized_ips = ('10.117.83.122',)
 class MySMTP(smtpd.SMTPServer) :
 	def __init__(self, localaddr, remoteaddr) :
 		smtpd.SMTPServer.__init__(self,localaddr, remoteaddr)
 
 	def process_message(self,peer, mailfrom, rcpttos, data) :
-		if peer not in authorized_ips :
-			print peer + " is not authorized"
+		if peer[0] not in authorized_ips :
+			print peer[0] + " is not authorized"
 			return
 		if sentto in rcpttos :
 			#it was sent to the right address
@@ -55,12 +55,12 @@ def send_password(mailfrom, data) :
 		try :
 			foo = conn.sendmail('password-recovery@case.edu', to, data)
 			break;
-		except (smtplib.SMTPRecipientsRefused, smtplib.SMTPSendersRefused) as e:
+		except (smtplib.SMTPRecipientsRefused) as e:
 			print 'error connecting. retrying'
 			i-=1
 	print foo
 	conn.quit()
 
-x = MySMTP(("129.22.21.164",8020),None)
+x = MySMTP(("10.245.213.73",8020),None)
 
 asyncore.loop()
