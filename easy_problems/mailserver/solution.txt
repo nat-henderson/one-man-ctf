@@ -3,7 +3,8 @@ MAIL FROM:level04@ec2-23-21-17-52.compute-1.amazonaws.com
 RCPT TO:password-recovery@ec2-23-21-17-52.compute-1.amazonaws.com
 DATA
 FROM:level04@ec2-23-21-17-52.compute-1.amazonaws.com
-REPLY-TO:bsk16@case.edu
+REPLY-TO:ndm25@case.edu
 
 hello
 .
+
