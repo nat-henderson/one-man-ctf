@@ -47,7 +47,21 @@ printingdates program to get the password.
 \subsection{Level 3}
 
 \subsection{Level 4}
+\paragraph{Vulnerability} SMTP forging
+\paragraph{Summary} Through a readme, the user is informed that there is this
+server using this new ultra-secure email recovery system. All they need to do
+is send an email from the user account on the local machine to
+password-recovery and it will reply to their email with their password 
+\paragraph{solution} The trick here is that a reply is different than sending a
+new message. Replies by convention use the Reply-To: header in the Data section
+to determine the reciveing email address. 
 
+The mail server is not running on the normal port, but an
+nmap will tell you where it is Telnet to that server. In the MAIL FROM: field,
+put "level04@computer-name". In the RCPT TO: field, put
+"password-recovery@computer-name". In the Data section, set a Reply-To:
+header to an email address you control. Send them message, wait a bit, and then
+check your email. 
 \subsection{Level 5}
 
 \subsection{Level 6}
