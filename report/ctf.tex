@@ -123,5 +123,8 @@ We've also placed the images for these machines for public availability on Amazo
 Since there are a few places where the locations of the next machine are hard-coded in (the decryption levels, for instance), it might be easier to manually configure the levels.  Each level requires a user, a private-public keypair, and authorization to log in without password authentication using the private key.  The following steps are also necessary for each level:
 \subsubsection{Level 1}
 Password.txt must contain the password for level2's private key, and must be set to permissions 400 for owner level2.
+\subsubsection{Level 3}
+After logging in with the "ubuntu" account, change user with su to "unsecure", change directory to /home/unsecure, and run "python /bin/remoteserver.py". This will start the unsecure server on port 3210.
+
 \subsubsection{Level 5}
 \end{document}
