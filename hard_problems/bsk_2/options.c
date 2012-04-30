@@ -6,8 +6,8 @@
 typedef char* (*strFunc)();
 struct utsname unameData;
 struct methodlist {
-	strFunc public[3];
 	strFunc private;
+	strFunc public[3];
 };
 
 char* myrandom() {
@@ -28,9 +28,7 @@ char* printInfo() {
 }
 
 char* readPassword() {
-	printf("running password\n");
 	FILE* file = fopen("../level08/password.txt","r");
-	printf("file open\n");
 	char* passwd = (char*)malloc(sizeof(char) * 50); 
 	fscanf(file, "%s",passwd);
 	return passwd;
@@ -42,7 +40,11 @@ int main(int argv, char** argc) {
 		printf("to run one of our basic functions\n");
 	} else {
 		int val = atoi(argc[1]);
-		
+		if(val >= 3) { 
+			//guard against buffer overflows
+			printf("that's not a valid option\n");
+			return 0;
+		}
 		struct methodlist m;
 		m.public[0] = helloWorld;
 		m.public[1] = myrandom;
