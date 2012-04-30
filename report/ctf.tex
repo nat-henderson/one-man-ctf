@@ -99,4 +99,13 @@ statement they write is meaningful, or nothing will happen.  One possible soluti
 This statement will select anything where the longurl parameter is empty (nothing) and take the union of that
 result with every result from the table passwords.  The password will be stored in the "obfuscated URL" returned.
 \subsection{Level 8}
+\paragraph{Vulnerability} Buffer Overflow
+\paragraph{Summary} The user is presented with the source of a program and an
+executable copy of it. The program contains 4 functions. One of them, which
+reads the text file to you, is private. The other 3 can be acceessed by passing
+a number from 0 to 2 to the program
+\paragraph{Solution} The four functions are put into a struct. All memory in a
+struct is contiguous. By entering -1 into the program, you access the function
+located before the start of the array, which is the private function. The
+private function uses setuid so it's able to access the protected file
 \end{document}
