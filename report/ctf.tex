@@ -33,7 +33,7 @@ user's home directory that gives hints on how to proceed.
 \section{The Levels}
 
 \subsection{Level 1}
-\paragraph{Vulnerability} Path Injection
+\paragraph{Vulnerability} UNIX Path Hijacking
 \paragraph{Summary} The goal is to read the password.txt file in the level02
 home directory. The user is given access to a small program, as well as the
 C code for the utility. The program uses setuid() to set the user id to level02
@@ -55,15 +55,15 @@ printingdates program to get the password.
 \subsection{Level 4}
 \paragraph{Vulnerability} SMTP forging
 \paragraph{Summary} Through a readme, the user is informed that there is this
-server using this new ultra-secure email recovery system. All they need to do
+server using this new ultra-secure email-based password recovery system. All they need to do
 is send an email from the user account on the local machine to
-password-recovery and it will reply to their email with their password 
+password-recovery and it will reply to their email with their password.
 \paragraph{Solution} The trick here is that a reply is different than sending a
 new message. Replies by convention use the Reply-To: header in the Data section
-to determine the reciveing email address. 
+to determine the receiving email address. 
 
 The mail server is not running on the normal port, but an
-nmap will tell you where it is Telnet to that server. In the MAIL FROM: field,
+nmap will tell you where it is.  Telnet to that server. In the MAIL FROM: field,
 put "level04@computer-name". In the RCPT TO: field, put
 "password-recovery@computer-name". In the Data section, set a Reply-To:
 header to an email address you control. Send them message, wait a bit, and then
@@ -97,7 +97,7 @@ The strings that the user puts into the query string are not escaped; that's mea
 user needs to ensure that the SELECT call returns nothing, then make sure that the first response to the whole
 statement they write is meaningful, or nothing will happen.  One possible solution is 
 \begin{verbatim} 
-' UNION SELECT * FROM passwords WHERE pw LIKE '\%
+' UNION SELECT * FROM passwords WHERE pw LIKE '%
 \end{verbatim}
 This statement will select anything where the longurl parameter is empty (nothing) and take the union of that
 result with every result from the table passwords.  The password will be stored in the "obfuscated URL" returned.
@@ -111,4 +111,17 @@ a number from 0 to 2 to the program
 struct is contiguous. By entering -1 into the program, you access the function
 located before the start of the array, which is the private function. The
 private function uses setuid so it's able to access the protected file
+\section{Setup}
+Someone wishing to use our game has a large number of options available to them.  We have provided three different ways to set up the game, in addition to manual assembly.
+\subsection{Block Device File}
+We've provided 4 files containing perfect images of the hard drives of the machines in question.  If you have local machines and you would like to put these images on them, prepare a partition and use the dd utility to copy the images onto the disks.  They should be bootable.
+\subsection{Filesystem Tarball}
+We've also provided a complete set of all the files on the disks in machine1 - machine4.tgz.  Extract those into a new partition and you should be good to go.
+\subsection{Amazon AMI}
+We've also placed the images for these machines for public availability on Amazon's Elastic Cloud Compute service.  You can spin up one instance of each by searching for EECS 444 CTF.
+\subsection{Manual Configuration}
+Since there are a few places where the locations of the next machine are hard-coded in (the decryption levels, for instance), it might be easier to manually configure the levels.  Each level requires a user, a private-public keypair, and authorization to log in without password authentication using the private key.  The following steps are also necessary for each level:
+\subsubsection{Level 1}
+Password.txt must contain the password for level2's private key, and must be set to permissions 400 for owner level2.
+\subsubsection{Level 5}
 \end{document}
