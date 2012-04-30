@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\title{Single-Player Capture The Flag}
+\author{Evan Gallo, Benjamin Kaplan, Jason Kuster, and Nathan McKinley}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+Capture The Flag, in a security context, is a competition used to train people
+to identify and exploit vulnerabilities in an appliction. In the original game,
+two teams were pitted against each other. The flag was a file on a computer,
+and the last one to "touch" the file was currently in control of it.
+
+More recently, a single-player variant has arisen. This variation is more of a
+test of personal ability rather than a group competition. In this variant, the
+player is given access to an account on a computer. Their job is to find a
+vulnerability that will let them get the password to the next account down the
+line. They win when they complete all of the challenges set before them.
+
+\section{Our Game}
+This project is a single-player implementation, focusing on vulnerabilities
+common to networked code. The game is run on 4 different machines.
+Specifically, we have designed this to run in Amazon's Elastic Cloud Compute
+(EC2) service.
+
+The game consists of 8 challenges spread out over 4 machines. Rather than using
+passwords, all of the accounts on the machines are set up using private key
+authentication. At the beginning of the game, the user is given a file that
+contains encrypted versions of all of the private keys. Each key is encrypted
+with a 20-character random password. The goal of the game is to read the text
+file in the home directory of the final user. There is a README file in every
+user's home directory that gives hints on how to proceed. 
+
+\section{The Levels}
+
+\subsection{Level 1}
+\paragraph{Vulnerability} Path Injection
+\paragraph{Summary} The goal is to read the password.txt file in the level02
+home directory. The user is given access to a small program, as well as the
+C code for the utility. The program uses setuid() to set the user id to level02 and then uses the system
+function to call date.
+\paragraph{Solution} Simply create your own executable program called "date"
+that reads the password file and puts it on the path. Then, run the
+printingdates program to get the password.
+
+\subsection{Level 2}
+
+\subsection{Level 3}
+
+\subsection{Level 4}
+
+\subsection{Level 5}
+
+\subsection{Level 6}
+
+\subection{Level 7}
+
+\subsection{Level 8}
+\end{document}

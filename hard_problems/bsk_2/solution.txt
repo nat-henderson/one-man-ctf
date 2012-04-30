@@ -1,2 +1,2 @@
-I'm not guarding against buffer overflows. Simply enter an item of 3 and it
+I'm not guarding against buffer overflows. Simply enter an item of -1 and it
 will give you the password
