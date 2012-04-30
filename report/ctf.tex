@@ -43,6 +43,9 @@ that reads the password file. Put this file first on the path. Then, run the
 printingdates program to get the password.
 
 \subsection{Level 2}
+\paragraph{Vulnerability} Poor Encryption
+\paragraph{Summary}  The user is given access to a file named file.txt which appears to be gibberish.  It is encrypted using a simple letter-replacement cipher.  The location of the next machine is stored in the ciphertext.
+\paragraph{Solution} Use a tool that analyzes the frequency of characters (such as a cryptogram solver) to decrypt the ciphertext.  The cleartext is the Declaration of Independence, with the hostname of the next server appended to the end.
 
 \subsection{Level 3}
 
@@ -52,7 +55,7 @@ printingdates program to get the password.
 server using this new ultra-secure email recovery system. All they need to do
 is send an email from the user account on the local machine to
 password-recovery and it will reply to their email with their password 
-\paragraph{solution} The trick here is that a reply is different than sending a
+\paragraph{Solution} The trick here is that a reply is different than sending a
 new message. Replies by convention use the Reply-To: header in the Data section
 to determine the reciveing email address. 
 
@@ -76,6 +79,9 @@ the plaintext password "superdoublesecretpassword" sent to port 9125 on the curr
 and an immediate reponse containing only the password for the next level, sent back over the same
 connection.
 \subsection{Level 6}
+\paragraph{Vulnerability} Not-So-Poor Encryption
+\paragraph{Summary} The user is given access to another file.txt which, again, appears to be gibberish.  This time, it is encrypted using single DES, which is known to be a weak encryption algorithm. The password to the next level is stored in the ciphertext. 
+\paragraph{Solution} There are two possible solutions to this problem.  One would be to attack DES itself.  DES is a weak algorithm and can be broken, given enough time.  The other would be to perform a brute-force attack on the key.  This proves to be the easier attack, as the key is only four alphanumeric characters.
 
 \subsection{Level 7}
 \paragraph{Vulnerability} SQL Injection
