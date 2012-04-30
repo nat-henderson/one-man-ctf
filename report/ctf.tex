@@ -48,6 +48,9 @@ printingdates program to get the password.
 \paragraph{Solution} Use a tool that analyzes the frequency of characters (such as a cryptogram solver) to decrypt the ciphertext.  The cleartext is the Declaration of Independence, with the hostname of the next server appended to the end.
 
 \subsection{Level 3}
+\paragraph{Vulnerability} Identifying Unsecured Remote Access
+\paragraph{Summary} The user is given the hostname of the next computer. Upon scanning the server with nmap, an open port is detected. By connecting to this server, it is possible to find the password to the next level.
+\paragraph{Solution} Connect to the server on port 3210 with telnet, at which point you will be presented with a blank prompt. The commands "ls", "cd", and "cat" work. By listing the contents of the directory, a folder called "secrets" is found, and changing directory and listing again reveals a file called "password.txt". "cat" this file for the password to the next level.
 
 \subsection{Level 4}
 \paragraph{Vulnerability} SMTP forging
