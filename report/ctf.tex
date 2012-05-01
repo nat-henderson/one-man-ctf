@@ -123,11 +123,23 @@ We've also placed the images for these machines for public availability on Amazo
 Since there are a few places where the locations of the next machine are hard-coded in (the decryption levels, for instance), it might be easier to manually configure the levels.  Each level requires a user, a private-public keypair, and authorization to log in without password authentication using the private key.  The following steps are also necessary for each level:
 \subsubsection{Level 1}
 Password.txt must contain the password for level2's private key, and must be set to permissions 400 for owner level2.
+\subsubsection{Level 2}
+The result of Level 2 is not a password. It's the URL of the second machine. It
+should be written out in words and added to the end of a reasonably long
+document (we used the Declaration of Independence). Use a cryptogram generator
+to generate an ``encrypted'' version of the text. put it in a file in the
+Level02 home directory.
+\subsubsection{Level 3}
+Level 3 runs on the second machine. It consists of a remote pseudo-shell that
+only allows the user to list the directory, cd, and cat. Run the service on the
+remote server and then put the password file in a directory that the user
+running the server can read.
 \subsubsection{Level 4}
 The password in mailserver.py must be the password for level5's private key.
-The mailserver must be run. The script requires Python 2.6 or 2.7.
+The mailserver script must be run. The script requires Python 2.6 or 2.7.
 \subsubsection{Level 5}
 The service must be started on the machine for level5, preferably by a privileged user, then disowned.  The client must be started on the machine for level6, preferably by a privileged user, then disowned.  vulnerable\_server.py must be modified to send the correct password for level6.
+
 \subsubsection{Level 7}
 We need an apache server, a mySQL database, the python-fcgi module and the apache fcgi module.  The mySQL database must contain a database called "shortener" with the tables "urls" and "passwords".  "urls" must contain two string fields, longurl and short.  "passwords" must contain "pw" and "host".  App.py must have its handler set to FCGI-Script in the apache configuration file.
 \subsubsection{Level 8}
