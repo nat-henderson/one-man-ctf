@@ -132,6 +132,12 @@ The service must be started on the machine for level5, preferably by a privilege
 We need an apache server, a mySQL database, the python-fcgi module and the apache fcgi module.  The mySQL database must contain a database called "shortener" with the tables "urls" and "passwords".  "urls" must contain two string fields, longurl and short.  "passwords" must contain "pw" and "host".  App.py must have its handler set to FCGI-Script in the apache configuration file.
 \subsubsection{Level 8}
 Compile the program and set the setuid bit as root so it can setuid(0) in the
-program. Make a /youwin.txt file at the root of your drive. I can contain
+program. Make a /youwin.txt file at the root of your drive. It can contain
 whatever you want, it just has to exist.
+\section{Distribution}
+If you want to play, the keys are \hyperref[here]{https://s3.amazonaws.com/444-ctf-final/444-keys.tgz}.  The first server is located at ec2-23-22-4-34.compute-1.amazonaws.com, and the password for the first key is s])FBt4ueEe2Nq?9Cdoe.
+
+If you want to set up your own servers, the files for each individual level are \hyperref[here]{https://s3.amazonaws.com/444-ctf-final/levels.tar.gz}.
+
+If you want to use our AMIs, they are available 
 \end{document}
