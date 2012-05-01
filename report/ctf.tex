@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage{hyperref}
 \title{Single-Player Capture The Flag}
 \author{Evan Gallo, Benjamin Kaplan, Jason Kuster, and Nathan McKinley}
 \begin{document}
@@ -148,10 +149,21 @@ We need an apache server, a mySQL database, the python-fcgi module and the apach
 Compile the program and set the setuid bit as root so it can setuid(0) in the
 program. Make a /youwin.txt file at the root of your drive. It can contain
 whatever you want, it just has to exist.
+
+\section{Playing the Game}
+If you want to play, the keys are \hyperref[https://s3.amazonaws.com/444-ctf-final/444-keys.tgz]{here}.  Do remember to extract the tarball with the 'p' option; permissions of 400 are required or the EC2 instances will reject the keys.  The first server is located at ec2-23-22-4-34.compute-1.amazonaws.com, and the password for the first key is s])FBt4ueEe2Nq?9Cdoe.  The keys are encrypted using the Rijndael block cipher (also known as AES) using ccrypt 1.9.  ccrypt can be obtained \hyperref[http://ccrypt.sourceforge.net/]{here}, and most linux distributions have a package for it in the package manager.  The usernames proceed as level0n, where n is the level number.  Therefore, the following commands will log you in as the first user:
+\begin{verbatim}
+ccrypt -d level01.key.cpt <enter password at prompt>
+ssh -i level01.key level01@ec2-23-22-4-34.compute-1.amazonaws.com
+\end{verbatim}
+
+
 \section{Distribution}
-If you want to play, the keys are \hyperref[here]{https://s3.amazonaws.com/444-ctf-final/444-keys.tgz}.  The first server is located at ec2-23-22-4-34.compute-1.amazonaws.com, and the password for the first key is s])FBt4ueEe2Nq?9Cdoe.
+If you want to set up your own servers, the files for each individual level are \hyperref[https://s3.amazonaws.com/444-ctf-final/levels.tar.gz]{here}.
 
-If you want to set up your own servers, the files for each individual level are \hyperref[here]{https://s3.amazonaws.com/444-ctf-final/levels.tar.gz}.
+If you want to use our AMIs, they are available as the following AMI IDs, in order:  ami-3c72a855, ami-3272a85b, ami-0c72a865, ami-0272a86b.
 
-If you want to use our AMIs, they are available 
+If you want to see the tarballs of the drives, they are available here:  \hyperref[https://s3.amazonaws.com/444-ctf-final/machine1.tgz]{M1}, \hyperref[https://s3.amazonaws.com/444-ctf-final/machine2.tgz]{M2}, \hyperref[https://s3.amazonaws.com/444-ctf-final/machine3.tgz]{M3}, \hyperref[https://s3.amazonaws.com/444-ctf-final/machine4.tgz]{M4}.
+
+If you want the actual disk images themselves, they are available here:  \hyperref[https://s3.amazonaws.com/444-ctf-final/machine1.img]{M1}, \hyperref[https://s3.amazonaws.com/444-ctf-final/machine2.img]{M2}, \hyperref[https://s3.amazonaws.com/444-ctf-final/machine3.img]{M3}, \hyperref[https://s3.amazonaws.com/444-ctf-final/machine4.img]{M4}.
 \end{document}
